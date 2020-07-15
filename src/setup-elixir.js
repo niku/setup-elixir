@@ -43,9 +43,9 @@ async function main() {
 }
 
 function checkPlatform() {
-  if (process.platform !== 'linux')
+  if (process.platform !== 'linux' && process.platform !== 'darwin')
     throw new Error(
-      '@actions/setup-elixir only supports Ubuntu Linux at this time'
+      '@actions/setup-elixir only supports Ubuntu Linux or macOS at this time'
     )
 }
 

@@ -4,7 +4,10 @@ set -eo pipefail
 
 cd $RUNNER_TEMP
 
-wget -q -O otp.tar.gz https://repo.hex.pm/builds/otp/ubuntu-14.04/OTP-${1}.tar.gz
+case "$OSTYPE" in
+  linux*)  wget -q -O otp.tar.gz https://repo.hex.pm/builds/otp/ubuntu-14.04/OTP-${1}.tar.gz ;;
+  darwin*) wget -q -O otp.tar.gz https://github.com/niku/otp/releases/download/OTP-${1}/darwin-19.5.0.tar.gz ;;
+esac
 mkdir -p .setup-elixir/otp
 tar zxf otp.tar.gz -C .setup-elixir/otp --strip-components=1
 rm otp.tar.gz

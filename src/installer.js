@@ -11,7 +11,7 @@ module.exports = {installElixir, installOTP}
  * @param {string} otpMajor
  */
 async function installElixir(version, otpMajor) {
-  if (process.platform === 'linux') {
+  if (process.platform === 'linux' || process.platform === 'darwin') {
     const otpString = otpMajor ? `-otp-${otpMajor}` : ''
     await exec(path.join(__dirname, 'install-elixir'), [version, otpString])
   }
@@ -23,12 +23,12 @@ async function installElixir(version, otpMajor) {
  * @param {string} version
  */
 async function installOTP(version) {
-  if (process.platform === 'linux') {
+  if (process.platform === 'linux' || process.platform === 'darwin') {
     await exec(path.join(__dirname, 'install-otp'), [version])
     return
   }
 
   throw new Error(
-    '@actions/setup-elixir only supports Ubuntu Linux at this time'
+    '@actions/setup-elixir only supports Ubuntu Linux or macOS at this time'
   )
 }
