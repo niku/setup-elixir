@@ -8,7 +8,7 @@ on:
 jobs:
   test:
     runs-on: ${{ matrix.os }}
-    name: OTP ${{matrix.pair.otp-version}} / Elixir ${{matrix.pair.elixir-version}}
+    name: OS ${{ matrix.os }} / OTP ${{matrix.pair.otp-version}} / Elixir ${{matrix.pair.elixir-version}}
     strategy:
       fail-fast: false
       matrix:
